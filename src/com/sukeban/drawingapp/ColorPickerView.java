@@ -160,9 +160,10 @@ public class ColorPickerView extends View {
     }
 
     public boolean onTouchEvent(MotionEvent event) {
+
         float pointX = event.getX();
         float pointY = event.getY();
-        // TODO: figure out which rectangle was tapped and fire a notification
+        int numColors = paintColors.size();
 
         System.out.println("tapped at x:" + pointX + " y:" + pointY);
 
@@ -172,7 +173,7 @@ public class ColorPickerView extends View {
         int column = (int) Math.floor(pointX / px);
         int row = (int) Math.floor(pointY / py);
 
-        int color = row*numColorsInRow + column;
+        int color = Math.min(numColors-1,row*numColorsInRow + column);
         System.out.println("tapped color:" + paintColors.get(color).getColor());
 
         Paint paint = paintColors.get(color);
