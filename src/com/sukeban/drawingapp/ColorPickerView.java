@@ -16,6 +16,7 @@ public class ColorPickerView extends View {
     private int shapeWidth = 40;
     private int shapeHeight = 40;
     private int numColorsInRow = 6;
+    private int numRows;
 
     private ArrayList<Paint> paintColors;
 
@@ -81,6 +82,9 @@ public class ColorPickerView extends View {
         for (Paint p : paintColors)
             System.out.println("color x: " + p.getColor());
 
+        int numColors = paintColors.size();
+        numRows = (int) Math.floor(numColors/numColorsInRow)+1;
+
     }
 
     public ColorPickerView(Context context) {
@@ -102,7 +106,6 @@ public class ColorPickerView extends View {
         setUpPaints();
     }
 
-
     @Override
     protected void onDraw(Canvas canvas) {
 
@@ -111,18 +114,37 @@ public class ColorPickerView extends View {
         int originY = 0;
         int originX = 0;
 
+        float px = getMeasuredWidth()/numColorsInRow;
+        float py = getMeasuredHeight()/numRows;
+
         for (int color=0; color<numColors; color++){
-            canvas.drawRect(originX, originY, shapeWidth, shapeHeight, paintColors.get(color));
+            canvas.drawRect(originX, originY, px, py, paintColors.get(color));
 
             System.out.println("making rect at x: " + originX + " y:" + originY + " with color:" +  paintColors.get(color).getColor());
 
-            originX += shapeWidth;
+            originX += px;
 
             if (color == numColorsInRow-1){
                 originX = 0;
-                originY += shapeHeight;
+                originY += py;
             }
         }
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        int padding = 10;
+        int contentWidth = shapeWidth*numColorsInRow;
+        // Resolve the width based on our minimum and the measure spec
+        int minw = contentWidth + getPaddingLeft() + getPaddingRight();
+        int width = resolveSizeAndState(minw, widthMeasureSpec, 0);
+        // Ask for a height that would let the view get as big as it can
+        int minh = shapeHeight*numRows + getPaddingBottom() + getPaddingTop() + padding;
+        int height = resolveSizeAndState(minh, heightMeasureSpec, 0);
+        // Calling this method determines the measured width and height
+        // Retrieve with getMeasuredWidth or getMeasuredHeight methods later
+        setMeasuredDimension(width, height);
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -130,6 +152,7 @@ public class ColorPickerView extends View {
         float pointY = event.getY();
         // TODO: figure out which rectangle was tapped and fire a notification
 
+        int column = (int) (pointX % numColorsInRow);
 
         return false;
     }
