@@ -111,14 +111,17 @@ public class ColorPickerView extends View {
 
         int numColors = paintColors.size();
 
-        int originY = 0;
         int originX = 0;
+        int originY = 0;
 
         float px = getMeasuredWidth()/numColorsInRow;
         float py = getMeasuredHeight()/numRows;
 
+        int w = getMeasuredWidth();
+        int h = getMeasuredHeight();
+
         for (int color=0; color<numColors; color++){
-            canvas.drawRect(originX, originY, px, py, paintColors.get(color));
+            canvas.drawRect(originX, originY, w, h, paintColors.get(color));
 
             System.out.println("making rect at x: " + originX + " y:" + originY + " with color:" +  paintColors.get(color).getColor());
 
@@ -129,6 +132,7 @@ public class ColorPickerView extends View {
                 originY += py;
             }
         }
+
     }
 
     @Override
