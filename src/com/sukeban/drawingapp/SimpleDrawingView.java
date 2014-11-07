@@ -1,14 +1,10 @@
 package com.sukeban.drawingapp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,21 +12,16 @@ import android.view.View;
 //http://guides.codepath.com/android/Basic-Painting-with-Views
 public class SimpleDrawingView extends View {
 
- // setup initial color
     private final int paintColor = Color.BLACK;
-    // defines paint and canvas
     private Paint drawPaint;
-    // Store circles to draw each time the user touches down
-    //private List<Point> circlePoints;
 
-    private Path path = new Path();
+    private Path path = new Path(); // TODO: array of paths each with own paint type
 
     public SimpleDrawingView(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
     }
 
-    // without a style, called by iflater passing in attribute set
+    // without a style, called by inflater passing in attribute set
     public SimpleDrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
         // Here load and store attributes for the view
@@ -42,7 +33,6 @@ public class SimpleDrawingView extends View {
     // if custom style
     public SimpleDrawingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        // TODO Auto-generated constructor stub
     }
 
     // Setup paint with color and stroke styles
@@ -56,9 +46,15 @@ public class SimpleDrawingView extends View {
       drawPaint.setStrokeCap(Paint.Cap.ROUND);
     }
 
+    public void setDrawPaint(Paint paint)
+    {
+        drawPaint.setColor(paint.getColor()); // TODO: for now just take the color, can also take style
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawPath(path, drawPaint);
+        // TODO: make an array of paths for each color change
     }
 
     // Get x and y and append them to the path

@@ -13,14 +13,26 @@ import android.view.View;
 
 public class ColorPickerView extends View {
 
+    public interface MyCustomObjectListener {
+        public void onItemSelected(Paint color);
+    }
+
     private int shapeWidth = 40;
     private int shapeHeight = 40;
     private int numColorsInRow = 6;
     private int numRows;
 
-    private ArrayList<Paint> paintColors;
+    private ArrayList<Paint> paintColors; // TODO: could just be an int of colors, but this way we could also add line styles in the swatches
+
+    private MyCustomObjectListener listener;
+
+    public void setCustomObjectListener(MyCustomObjectListener listener) {
+        this.listener = listener;
+    }
 
     private void setUpPaints(){
+
+        this.listener = null;
 
         paintColors = new ArrayList<Paint>();
 
@@ -89,16 +101,12 @@ public class ColorPickerView extends View {
 
     public ColorPickerView(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
         setUpPaints();
     }
 
     public ColorPickerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setUpPaints();
-
-        // TODO: can you ask what your bounds are to determine this size for each rectangle?
-        // yes use the layout listener
     }
 
     public ColorPickerView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -156,7 +164,19 @@ public class ColorPickerView extends View {
         float pointY = event.getY();
         // TODO: figure out which rectangle was tapped and fire a notification
 
-        int column = (int) (pointX % numColorsInRow);
+        System.out.println("tapped at x:" + pointX + " y:" + pointY);
+
+        float px = getMeasuredWidth()/numColorsInRow;
+        float py = getMeasuredHeight()/numRows;
+
+        int column = (int) Math.floor(pointX / px);
+        int row = (int) Math.floor(pointY / py);
+
+        int color = row*numColorsInRow + column;
+        System.out.println("tapped color:" + paintColors.get(color).getColor());
+
+        Paint paint = paintColors.get(color);
+        listener.onItemSelected(paint);
 
         return false;
     }
