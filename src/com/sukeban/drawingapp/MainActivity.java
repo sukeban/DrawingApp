@@ -1,12 +1,17 @@
 package com.sukeban.drawingapp;
 
-import com.sukeban.drawingapp.ColorPickerView.MyCustomObjectListener;
+import com.sukeban.drawingapp.ColorPickerView.PaintSelectorListener;
+import com.sukeban.drawingapp.BrushPickerFragment.BrushSizeSelectorListener;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
-public class MainActivity extends Activity {
+public class MainActivity extends android.support.v4.app.FragmentActivity {
 
     private ColorPickerView colorPicker;
     private SimpleDrawingView drawingView;
@@ -19,13 +24,44 @@ public class MainActivity extends Activity {
         drawingView = (SimpleDrawingView)findViewById(R.id.simpleDrawingView1);
 
         colorPicker = (ColorPickerView)findViewById(R.id.colorPickerView1);
-        colorPicker.setCustomObjectListener(new MyCustomObjectListener() {
+        colorPicker.setCustomObjectListener(new PaintSelectorListener() {
 
             @Override
             public void onItemSelected(Paint color) {
                 drawingView.setDrawPaint(color);
             }
         });
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    public void onAddItem(MenuItem m) {
+        // TODO: clear the view
+        drawingView.clear();
+    }
+
+    public void onSaveItem(MenuItem m) {
+        // TODO: save the view as a bitmap to the photo roll
+
+    }
+
+    public void onChangeBrush(MenuItem m) {
+        // TODO: bring up the brush activity (with custom view) and pass along the result
+        FragmentManager fm = getSupportFragmentManager();
+        final BrushPickerFragment brushPicker = BrushPickerFragment.newInstance("Brush Size");
+        brushPicker.setCustomObjectListener(new BrushSizeSelectorListener() {
+
+            @Override
+            public void onItemSelected(int radius) {
+                drawingView.setRadius(radius);
+                brushPicker.dismiss();
+            }
+        });
+        brushPicker.show(fm, "fragment_brush_picker");
     }
 }

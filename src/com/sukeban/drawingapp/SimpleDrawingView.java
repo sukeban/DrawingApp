@@ -8,9 +8,14 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
+//https://yahoo.jiveon.com/docs/DOC-6520
 //http://guides.codepath.com/android/Basic-Painting-with-Views
+//http://guides.codepath.com/android/Defining-Custom-Views
 public class SimpleDrawingView extends View {
+
+    // TODO: persist path array for orientation change
 
     private final int paintColor = Color.BLACK;
     private Paint drawPaint;
@@ -57,6 +62,8 @@ public class SimpleDrawingView extends View {
         // TODO: make an array of paths for each color change
     }
 
+    // TODO: detect a long press and then change the brush size
+
     // Get x and y and append them to the path
     public boolean onTouchEvent(MotionEvent event) {
         float pointX = event.getX();
@@ -80,4 +87,18 @@ public class SimpleDrawingView extends View {
        return true; // Indicate we've consumed the touch and want to keep listening
     }
 
+    public boolean onLongClick (View v){
+        Toast.makeText(getContext(), "long pressed", Toast.LENGTH_SHORT).show();
+        return true;
+    }
+
+    public void clear(){
+        path.reset();
+        postInvalidate(); // Indicate view should be redrawn
+    }
+
+    public void setRadius(int radius){
+        drawPaint.setStrokeWidth(radius);
+        postInvalidate(); // Indicate view should be redrawn
+    }
 }

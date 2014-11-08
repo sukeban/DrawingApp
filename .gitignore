@@ -36,3 +36,27 @@ bin/res/crunch/drawable-xhdpi/ic_launcher.png
 bin/res/crunch/drawable-xxhdpi/ic_launcher.png
 
 bin/resources.ap_
+
+bin/res/crunch/drawable-hdpi/icon_brush.png
+
+bin/res/crunch/drawable-hdpi/icon_compose.png
+
+bin/res/crunch/drawable-hdpi/icon_save.png
+
+bin/res/crunch/drawable-mdpi/icon_brush.png
+
+bin/res/crunch/drawable-mdpi/icon_compose.png
+
+bin/res/crunch/drawable-mdpi/icon_save.png
+
+bin/res/crunch/drawable-xhdpi/icon_brush.png
+
+bin/res/crunch/drawable-xhdpi/icon_compose.png
+
+bin/res/crunch/drawable-xhdpi/icon_save.png
+
+bin/res/crunch/drawable-xxhdpi/icon_brush.png
+
+bin/res/crunch/drawable-xxhdpi/icon_compose.png
+
+bin/res/crunch/drawable-xxhdpi/icon_save.png

@@ -13,7 +13,7 @@ import android.view.View;
 
 public class ColorPickerView extends View {
 
-    public interface MyCustomObjectListener {
+    public interface PaintSelectorListener {
         public void onItemSelected(Paint color);
     }
 
@@ -24,9 +24,9 @@ public class ColorPickerView extends View {
 
     private ArrayList<Paint> paintColors; // TODO: could just be an int of colors, but this way we could also add line styles in the swatches
 
-    private MyCustomObjectListener listener;
+    private PaintSelectorListener listener;
 
-    public void setCustomObjectListener(MyCustomObjectListener listener) {
+    public void setCustomObjectListener(PaintSelectorListener listener) {
         this.listener = listener;
     }
 
@@ -125,11 +125,8 @@ public class ColorPickerView extends View {
         float px = getMeasuredWidth()/numColorsInRow;
         float py = getMeasuredHeight()/numRows;
 
-        int w = getMeasuredWidth();
-        int h = getMeasuredHeight();
-
         for (int color=0; color<numColors; color++){
-            canvas.drawRect(originX, originY, w, h, paintColors.get(color));
+            canvas.drawRect(originX, originY, originX + px, originY + py, paintColors.get(color));
 
             System.out.println("making rect at x: " + originX + " y:" + originY + " with color:" +  paintColors.get(color).getColor());
 
