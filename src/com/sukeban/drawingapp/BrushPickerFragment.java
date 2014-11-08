@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class BrushPickerFragment extends DialogFragment {
 
-    private Button radius1; // TODO: custom button, where the tag can be the radius
+    private Button radius1; // TODO: custom button views, where the tag can be the radius
     private Button radius2;
     private Button radius3;
 
@@ -71,7 +71,6 @@ public class BrushPickerFragment extends DialogFragment {
                       listener.onItemSelected(20);
                   }
         });
-
 
         String title = getArguments().getString("title", "Brush Size");
         getDialog().setTitle(title);

@@ -3,7 +3,6 @@ package com.sukeban.drawingapp;
 import com.sukeban.drawingapp.ColorPickerView.PaintSelectorListener;
 import com.sukeban.drawingapp.BrushPickerFragment.BrushSizeSelectorListener;
 
-import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -27,7 +26,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
         colorPicker.setCustomObjectListener(new PaintSelectorListener() {
 
             @Override
-            public void onItemSelected(Paint color) {
+            public void onItemSelected(int color) {
                 drawingView.setDrawPaint(color);
             }
         });
@@ -41,7 +40,6 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
     }
 
     public void onAddItem(MenuItem m) {
-        // TODO: clear the view
         drawingView.clear();
     }
 
@@ -51,7 +49,6 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
     }
 
     public void onChangeBrush(MenuItem m) {
-        // TODO: bring up the brush activity (with custom view) and pass along the result
         FragmentManager fm = getSupportFragmentManager();
         final BrushPickerFragment brushPicker = BrushPickerFragment.newInstance("Brush Size");
         brushPicker.setCustomObjectListener(new BrushSizeSelectorListener() {

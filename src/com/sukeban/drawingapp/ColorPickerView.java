@@ -14,7 +14,7 @@ import android.view.View;
 public class ColorPickerView extends View {
 
     public interface PaintSelectorListener {
-        public void onItemSelected(Paint color);
+        public void onItemSelected(int color);
     }
 
     private int shapeWidth = 40;
@@ -174,7 +174,7 @@ public class ColorPickerView extends View {
         System.out.println("tapped color:" + paintColors.get(color).getColor());
 
         Paint paint = paintColors.get(color);
-        listener.onItemSelected(paint);
+        listener.onItemSelected(paint.getColor());
 
         return false;
     }
