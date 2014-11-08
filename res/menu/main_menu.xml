@@ -15,12 +15,6 @@
         android:showAsAction="always"
         android:title="Compose"
          />
-        <item
-        android:id="@+id/menu_save"
-        android:icon="@drawable/icon_save"
-        android:onClick="onSaveItem"
-        android:showAsAction="always"
-        android:title="Save"
-         />
+
 
 </menu>

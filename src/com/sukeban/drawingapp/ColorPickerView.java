@@ -91,12 +91,16 @@ public class ColorPickerView extends View {
         magenta.setColor(Color.MAGENTA);
         paintColors.add(magenta);
 
-        for (Paint p : paintColors)
-            System.out.println("color x: " + p.getColor());
+        Paint orange = new Paint();
+        orange.setStyle(Style.FILL);
+        orange.setARGB(255, 255, 189, 136);
+        paintColors.add(orange);
+
+        //for (Paint p : paintColors)
+        //    System.out.println("color x: " + p.getColor());
 
         int numColors = paintColors.size();
-        numRows = (int) Math.floor(numColors/numColorsInRow)+1;
-
+        numRows = (int) Math.floor(numColors/numColorsInRow);
     }
 
     public ColorPickerView(Context context) {
@@ -128,7 +132,7 @@ public class ColorPickerView extends View {
         for (int color=0; color<numColors; color++){
             canvas.drawRect(originX, originY, originX + px, originY + py, paintColors.get(color));
 
-            System.out.println("making rect at x: " + originX + " y:" + originY + " with color:" +  paintColors.get(color).getColor());
+            //System.out.println("making rect at x: " + originX + " y:" + originY + " with color:" +  paintColors.get(color).getColor());
 
             originX += px;
 
@@ -160,9 +164,9 @@ public class ColorPickerView extends View {
 
         float pointX = event.getX();
         float pointY = event.getY();
-        int numColors = paintColors.size();
+        //System.out.println("tapped at x:" + pointX + " y:" + pointY);
 
-        System.out.println("tapped at x:" + pointX + " y:" + pointY);
+        int numColors = paintColors.size();
 
         float px = getMeasuredWidth()/numColorsInRow;
         float py = getMeasuredHeight()/numRows;
@@ -171,7 +175,7 @@ public class ColorPickerView extends View {
         int row = (int) Math.floor(pointY / py);
 
         int color = Math.min(numColors-1,row*numColorsInRow + column);
-        System.out.println("tapped color:" + paintColors.get(color).getColor());
+        //System.out.println("tapped color:" + paintColors.get(color).getColor());
 
         Paint paint = paintColors.get(color);
         listener.onItemSelected(paint.getColor());

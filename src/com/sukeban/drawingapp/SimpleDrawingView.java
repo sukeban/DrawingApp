@@ -10,7 +10,6 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 //https://yahoo.jiveon.com/docs/DOC-6520
 //http://guides.codepath.com/android/Basic-Painting-with-Views
