@@ -22,8 +22,7 @@ public class ColorPickerView extends View {
     private int numColorsInRow = 6;
     private int numRows;
 
-    private ArrayList<Paint> paintColors; // TODO: could just be an int of colors, but this way we could also add line styles in the swatches
-
+    private ArrayList<Paint> paintColors;
     private PaintSelectorListener listener;
 
     public void setCustomObjectListener(PaintSelectorListener listener) {

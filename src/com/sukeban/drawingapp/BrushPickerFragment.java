@@ -11,11 +11,11 @@ import android.widget.Button;
 
 public class BrushPickerFragment extends DialogFragment {
 
-    private Button radius1; // TODO: custom button views, where the tag can be the radius
+    private Button radius1;
     private Button radius2;
     private Button radius3;
 
-    //private int selectedRadius; // TODO: make this look picked
+    //private int selectedRadius; // TODO: make current look selected, also pass in the current color
 
     public interface BrushSizeSelectorListener {
         public void onItemSelected(int radius);

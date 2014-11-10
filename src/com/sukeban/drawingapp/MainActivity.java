@@ -2,8 +2,8 @@ package com.sukeban.drawingapp;
 
 import com.sukeban.drawingapp.ColorPickerView.PaintSelectorListener;
 import com.sukeban.drawingapp.BrushPickerFragment.BrushSizeSelectorListener;
+import com.sukeban.drawingapp.ClearDrawingConfirmationFragment.ClearDrawingConfirmationListener;
 
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
@@ -40,7 +40,16 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
     }
 
     public void onAddItem(MenuItem m) {
-        drawingView.clear();
+        FragmentManager fm = getSupportFragmentManager();
+        final ClearDrawingConfirmationFragment confirmation = new ClearDrawingConfirmationFragment();
+        confirmation.setCustomObjectListener(new ClearDrawingConfirmationListener() {
+
+            @Override
+            public void onClearSelected() {
+                drawingView.clear();
+            }
+        });
+        confirmation.show(fm, "Clear Drawing");
     }
 
     public void onSaveItem(MenuItem m) {
