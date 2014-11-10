@@ -8,26 +8,24 @@
 
     <Button
         android:id="@+id/radius1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-            android:layout_gravity="center"
-
-        android:text="Small" />
+        style="@style/NiceButton"
+        android:layout_marginTop="10dp"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center_horizontal"/>
 
     <Button
         android:id="@+id/radius2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-            android:layout_gravity="center"
-
-        android:text="Medium" />
+        style="@style/NiceButton"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_gravity="center_horizontal"/>
 
     <Button
         android:id="@+id/radius3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-            android:layout_gravity="center"
-
-        android:text="Large" />
+        style="@style/NiceButton"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

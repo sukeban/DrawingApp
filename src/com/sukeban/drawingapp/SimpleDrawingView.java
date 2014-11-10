@@ -14,7 +14,9 @@ import android.view.View;
 //https://yahoo.jiveon.com/docs/DOC-6520
 //http://guides.codepath.com/android/Basic-Painting-with-Views
 //http://guides.codepath.com/android/Defining-Custom-Views
-
+//http://stackoverflow.com/questions/3406910/efficient-2d-drawing-in-android/3408641#3408641
+//http://developer.android.com/training/displaying-bitmaps/display-bitmap.html
+//http://guides.codepath.com/android/Drawables
 public class SimpleDrawingView extends View {
 
     // TODO: persist path array for orientation change
@@ -88,7 +90,6 @@ public class SimpleDrawingView extends View {
         }
     }
 
-    // Get x and y and append them to the path
     public boolean onTouchEvent(MotionEvent event) {
 
         float pointX = event.getX();
